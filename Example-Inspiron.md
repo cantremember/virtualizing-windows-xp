@@ -89,6 +89,7 @@ Volume 2                      RAW    Partition     55 MB  Healthy    Hidden
 
 Schweet.
 
+
 ## Restore with Ghost
 
 Both the boot and Data-only volumes were backed up as their own set of V2Is.
@@ -109,6 +110,7 @@ Volume 2     C                NTFS   Partition    223 GB  Healthy    Boot
 Looks about right.
 
 But there was still *one more issue* ...
+
 
 ## Repair Detection
 
@@ -141,6 +143,7 @@ check out Microsoft's [thorough article](http://support.microsoft.com/en-us/kb/9
 including some manual backup steps that could serve as your fallback option.
 
 Fortunately, *none of those* were the issue in this case ...
+
 
 ## Confirm the Boot Disk
 
@@ -182,3 +185,52 @@ Everything finally worked once I had
   ```
 
 The XP Setup disk can now detect it for a [Repair Installation](Techniques.md#xp-recovery-installation) process.
+
+Once XP has been repaired and can be booted, start taking regular snapshots of the [VMDK](Tools.md#virtual-disks)
+before making major potentially-breaking changes.
+This, my friends, is the first of many **benefits of virtualization**.
+
+
+## Restore Drive Letters
+
+The original configuration was
+
+- `H:` **the Brain Transplant**, bootable
+- `C:` **Storage**, where XP is installed
+
+Having re-partitioned and re-drivered everything, the volume letters do not auto-restore within XP.
+We must rename `D:` to `H:`.
+[Disk Management](Techniques.md#disk-management) will not allow us to modify the drive letter of the boot or system volume,
+so it's off to the registry we go.
+
+The Microsoft [article](http://support.microsoft.com/en-us/kb/223188) on changing drive letters via the registry is very thorough.
+You need to use `regedit` to modify the keys in 'HKEY_LOCAL_MACHINE\SYSTEM\MountedDevices'.
+Fortunately in XP, the instructions are [even a bit simpler](http://windowsitpro.com/windows-client/changing-windows-system-drive-letter).
+
+I found a lot of cruft sitting there
+
+- A huge list of '\??\Volume-', most of them from long-obsolete USB mounts
+- A huge list of drive letters, many of them similarly obsolete
+
+In reading [this forum post](http://www.tomshardware.com/forum/266874-45-drive-letter-assignments-registry),
+I believed i could complete whack all the keys and reboot.
+**Do not do this**, unless you've snapshotted and are ready to revert when you can't login again.
+
+A multi-step process to perform a cleanup safely is
+
+- Delete all the '\??\Volume-' keys, and then *reboot*
+
+  XP will re-discover all the truly mounted volumes,
+  such as the VMDK partition and the virtual CDROM drive.
+
+- Delete all the '\DosDevices\' keys that are not associated with one of the current '\??\Volume-' keys.
+
+  The drive letter and volume binary values should match.
+  That'll clean out all mounts to obsolete devices.
+
+- Delete the '\DosDevices\H:' key, and rename the '\DosDevices\D:' key, then *reboot*
+
+If [Ghost](Tools.md#ghost) was backing the original hardware up to a removable drive,
+and that drive was not mounted through the VM when you did all this cleanup,
+you will have deleted the drive letter than Ghost depends upon for backups.
+You can fix that when you first re-mount the removable drive.

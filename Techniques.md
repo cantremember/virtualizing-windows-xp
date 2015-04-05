@@ -271,18 +271,13 @@ Hooray, you have a fresh set of drivers that match your virtualized hardware!
 But you're also running the way ancient(er) version of XP burned on that ISO.
 You'll want to re-install all the [Windows Updates](Techniques.md#windows-updates).
 
-
-
-<!--
-!!!
-
-within WinXP, give a VMDK a Volume / Drive Letter
-  - http://www.theirishpenguin.com/2009/07/22/howto-add-a-secondary-hard-drive-for-windows-via-virtualbox-2-1-4-ose.html
-  - 'Administrative Tools > Computer Management > Disk Management' + Create Partition
-
--->
+In fact, you'll be making a lot of free-wheeling changes from this point onwards.
+You may want to get in the habit of snapshotting your [VMDK](Tools.md#virtual-disks),
+just in case you screw something up royally.
 
 ### Windows Updates
+
+> Take a snapshot of your [VMDK](Tools.md#virtual-disks) first, just in case.
 
 <!--
 !!!
