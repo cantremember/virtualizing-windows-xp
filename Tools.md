@@ -65,7 +65,7 @@ or Notepad for editing your [`boot.ini` file](Techniques.md#bootini).
 
 My full-machine backup tool of choice was Norton Ghost.
 I ripped an ISO of **Norton Ghost 12** --
-which has been [end-of-lifed](http://www.symantec.com/business/support/index?page=content&id=DOC7209) --
+which has been [end-of-lifed](http://community.norton.com/en/forums/important-update-regarding-norton-ghost) --
 to use as the Recovery OS under [VirtualBox](Tools.md#virtualbox).
 It seems fully backward-compatible with V2I files from prior versions of Ghost.
 
@@ -75,7 +75,8 @@ You'll be using several tools that it provides
   to configure your [partitions](Techniques.md#partitioning) and [`boot.ini` file](Techniques.md#bootini)
 - The standard **'Recover My Computer' Wizard**, once your VMDK is partitioned.
 
-I tried the Recover OS on Norton Ghost 10 -- similarly end-of-lifed -- but I'm blocked by its DRM requirements even though I have multiple licenses.
+I tried the Recover OS on Norton Ghost 10 -- similarly [end-of-lifed](http://www.symantec.com/business/support/index?page=content&id=DOC7209) --
+but I'm blocked by its DRM requirements even though I have multiple licenses.
 [Lots](http://community.norton.com/en/forums/norton-ghost-100-activation-error)
 [of](http://community.norton.com/en/forums/norton-ghost-10-activation-fails)
 [folks](https://community.norton.com/en/forums/cannot-reinstall-ghost-10-error-msg-says-too-many-installations)
