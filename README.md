@@ -12,7 +12,8 @@ but in its time, XP captured the imagination of *millions* --
 and it still runs all the apps I care about, on the rare occasions that I need them.
 And all the backups in the world can't save you when your hardware bites the dust.
 
-This repo outlines some [Tools](Tools.md) &amp; [Techniques](Techniques.md) for the virtualization process, in case it's of help to others.
+This repo outlines some [Tools](Tools.md) &amp; [Techniques](Techniques.md) for the virtualization process,
+in case it's of help to others.
 It's also a compendium of **truly useful** online resources.
 It could have been a blog post, but I find my learnings will be best served by tons of hyperlinking.
 
@@ -21,8 +22,11 @@ I provide two examples:
 - A [Simple Basic](Example-Simple.md) one.
 - [The Inspiron](Example-Inspiron.md) - a more complex example with an OEM partition and a Brain Transplant.
 
-Please feel free to [contribute to this repo](CONTRIBUTING.md).
+And I have some rather sad news to tell you about [Internet Explorer](Internet-Explorer.md) ...
 
+---
+
+Please feel free to [contribute to this repo](CONTRIBUTING.md).
 
 
 <!--
@@ -33,6 +37,7 @@ Please feel free to [contribute to this repo](CONTRIBUTING.md).
 [XP Helper](Tools.md#xp-helper)
 [Ghost](Tools.md#ghost)
 [Recover My Computer](Tools.md#ghost)
+[Mounting a Virtual Disk](Tools.md#mounting-a-virtual-disk)
 
 [Initial VM Setup](Techniques.md#initial-vm-setup)
 [Partitioning](Techniques.md#partitioning)
@@ -46,4 +51,7 @@ Please feel free to [contribute to this repo](CONTRIBUTING.md).
 [Repair Installation](Techniques.md#xp-repair-installation)
 [Restoring with Ghost](Techniques.md#restoring-with-ghost)
 [Windows Updates](Techniques.md#windows-updates)
+[Snapshot Your VM](Techniques.md#snapshot-your-vm)
+
+[Internet-Explorer](Internet-Explorer.md#borked)
 -->

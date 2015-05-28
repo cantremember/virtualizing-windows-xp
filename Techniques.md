@@ -20,6 +20,8 @@ Make sure to provide at least the same number of CPUs and amount of virtual RAM 
 It's easy enough to increase them later -- Windows XP doesn't fall over under such conditions
 (like it does when you swap out hardware without [repairing](Techniques.md#xp-repair-installation) the device drivers).
 
+You'll also want Bidirectional Clipboard support if you plan on doing any debugging.
+
 
 ## Partitioning
 
@@ -191,7 +193,7 @@ The networking capabilities of Ghost's clunky-but-good-enough Recovery OS were k
 I learned that *if all else goes wrong*, you can always take the brute force approach:
 
 - Create a 'Holder' [VMDK](Tools.md#virtual-disks)
-- Mount it for, and boot into, your[XP Helper](Tools.md#xp-helper) VM
+- Mount it for, and boot into, your [XP Helper](Tools.md#xp-helper) VM
 - Partition and quick-format the disk via [Disk Management](Techniques.md#disk-management)
 - Copy your V2Is to the Holder disk
 
@@ -209,6 +211,7 @@ For a more in-depth coverage of what's mentioned here
 
 - Michael Stevens wrote an **excellent guide** to [XP Repair Installation](http://www.michaelstevenstech.com/XPrepairinstall.htm)
 - This [how-to article](http://www.geekstogo.com/forum/topic/138-how-to-repair-windows-xp/) from GeeksToGo has some lovely screen-caps
+
 
 ### boot.ini
 
@@ -228,7 +231,10 @@ You can completely re-build the `boot.ini` from the [Recovery Console](Technique
 bootcfg /rebuild
 ```
 
-You'll definitely want to make a backup of it first.
+You could also edit it after [mounting the VMDK](Tools.md#mounting-a-virtual-disk) from your host machine.
+
+Regardless of how you go about making your edits, you'll definitely want to *make a backup of it first*.
+
 
 ### XP Repair Installation
 
@@ -271,26 +277,81 @@ Hooray, you have a fresh set of drivers that match your virtualized hardware!
 But you're also running the way ancient(er) version of XP burned on that ISO.
 You'll want to re-install all the [Windows Updates](Techniques.md#windows-updates).
 
-In fact, you'll be making a lot of free-wheeling changes from this point onwards.
-You may want to get in the habit of snapshotting your [VMDK](Tools.md#virtual-disks),
-just in case you screw something up royally.
+At some point, you'll want to install the [VirtualBox Guest Additions](Tools.md#virtualbox) as well.
+
+
+### Snapshot Your VM
+
+You'll be making a lot of free-wheeling changes from this point onwards.
+You may want to get in the habit of snapshotting your VM, just in case you screw something up royally.
+
+You can always delete the snapshots once you've completed the process.
+Nothing gets lost in the process -- pending changes are simply merged down into your VMDK.
+
 
 ### Windows Updates
 
-> Take a snapshot of your [VMDK](Tools.md#virtual-disks) first, just in case.
+> Take a [snapshot](Techniques.md#snapshot-your-vm) of your VM first, just in case.
 
-<!--
-!!!
+You're going to use the native XP tooling to download all of the Windows Updates that your OS requires.
+It's going to take a little while and require a number of reboots -- but it *will eventually succeed*.
 
-Spin it up, and pull down all available patches &amp; updates,
-with the possible exception of [Windows Genuine Advantage Notification]().
+Start by following [this article](http://support.microsoft.com/en-us/kb/943144)
 
-- http://superuser.com/questions/351937/how-do-i-force-windows-to-check-for-updates
-- http://support.microsoft.com/kb/949104 = SP3
-- http://support.microsoft.com/fixit/
-- http://support.microsoft.com/kb/943144/en + install Windows Update Agent
-- http://windowsupdate.microsoft.com/windowsupdate/v6/default.aspx?ln=en-us + install Windows Updater
-- and just keep running Windows Updater
-- skip
-  - Windows Genuine Advantage Notification
--->
+- Download &amp; Install **Windows Update Agent**
+
+  The `windowsupdateagent30` package is fully XP-compliant.
+  It installs a Start Menu option called 'Windows Update'.
+  You can then confirm the installed version of `%systemroot%\system32\wuaueng.dll`; 7.4.7600.226 is sufficient.
+
+- Register the **Wups2.dll** file
+
+  Just follow the "Let me fix it myself" instructions provided in the article.
+
+> The Microsoft article on [updating the Windows Update Agent](http://support.microsoft.com/kb/949104) has some useful information too,
+> although it's more than you should need here.
+
+Once you've got Windows Update Agent installed, it's just a matter of installing incremental batches of Windows Updates.
+Keep launching 'Windows Update' and rebooting until you're not offered any more of them.
+
+The Start Menu option will launch Internet Explorer with [this URL](http://www.update.microsoft.com/windowsupdate/v6/default.aspx?ln=en-us).
+It's best to always choose the 'Custom' Wizard -- 'Express' tends to make bad decisions on your behalf.
+But still, feel free to improvise; you do have a VM [snapshot](Techniques.md#snapshot-your-vm) to fall back on.
+
+- The 1st time through, you'll need to confirm installation of an ActiveX Control.
+
+  And the first component you'll need to download &amp; install is Windows Installer 3.1.
+
+- The 2nd time through, you'll be given the option to install SP3.
+
+  Don't do it -- installing SP3 will [bork](Internet-Explorer.md#borked) Internet Explorer,
+  and you won't be able to use the Agent anymore.
+  Instead, download &amp; install the 70+ individual updates listed below it.
+  You may need to go through the individual updates process a couple of times to exhaust them all.
+
+  Eventually, the Agent will only offer you SP3.
+
+- Install the SP3 update.
+
+  Reboot, then reboot *again*, and wait for the next set of updates to be delivered.
+
+  IE6 is [completely borked](Internet-Explorer.md#borked) after you've installed SP3.
+
+  In my case, Firefox was already the default browser.
+  Starting a Windows Update would only launch in a new Firefox window ...
+  which doesn't support ActiveX, so the Agent doesn't work.
+
+- From then on, just keep installing batches of post-SP3 updates as they arrive.
+
+  You'll have to wait for Microsoft to deliver them on whatever schedule it decides.
+  Eventually, you'll just stop getting updates.
+  And *you're done*.
+
+  I have always been wary about installing the 'Windows Genuine Advantage Notification' patch,
+  but as long as you have a valid XP license key, it shouldn't be an issue.
+
+**Hooray!**
+You have a functioning virtualized instance of your Windows XP box!
+
+Well, *mostly functioning*.
+Your Internet Explorer is probably still IE6, and it's probably [borked](Internet-Explorer.md#borked) ... for good.

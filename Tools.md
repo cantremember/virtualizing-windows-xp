@@ -95,3 +95,20 @@ To overcome this issue, I tried to
 
 Norton Ghost 12 has a little bit of DRM, but it's not nearly as nasty.
 Just make sure you've only activated it [on one machine](https://community.norton.com/en/forums/reinstalling-ghost-12-another-pc).
+
+
+## Mounting a Virtual Disk
+
+Tools such as [VMDK Mounter](http://www.paragon-software.com/home/vd-mounter-mac-free/) (for the Mac)
+allow you to mount a VMDK on your host machine and perform read / write operations as if it were a remote file system.
+
+> Suggestions of other such tools are welcomed.
+
+Why would you want to do this?
+
+- You may want to use your favorite editor to modify the [`boot.ini` file](Techniques.md#bootini).
+
+- You may want an efficient way to pull files off of your [VMDK](Tools.md#virtual-disks).
+
+  Files on your VMDK might deserve a new home,
+  such as a location on the host machine which gets shared with your Windows XP instance.
