@@ -324,34 +324,42 @@ But still, feel free to improvise; you do have a VM [snapshot](Techniques.md#sna
 
 - The 2nd time through, you'll be given the option to install SP3.
 
-  Don't do it -- installing SP3 will [bork](Internet-Explorer.md#borked) Internet Explorer,
-  and you won't be able to use the Agent anymore.
-  Instead, download &amp; install the 70+ individual updates listed below it.
-  You may need to go through the individual updates process a couple of times to exhaust them all.
+  Personally, I held off on SP3 until the last moment, installing the other 70+ individual updates&dagger; first.
+  I had to go through the update-and-reboot cycle a couple of times to exhaust them all.
 
   Eventually, the Agent will only offer you SP3.
+
+  > Why did I did I chose this strategy?
+  > Probably because I sweat the details too much.
+  > **But mostly** because SP3 kept [borking](Internet-Explorer.md#borked) Internet Explorer,
+  > and I hadn't yet discovered the proper Microsoft [installer for IE8](Internet-Explorer.md#install-ie8).
 
 - Install the SP3 update.
 
   Reboot, then reboot *again*, and wait for the next set of updates to be delivered.
 
-  IE6 is [completely borked](Internet-Explorer.md#borked) after you've installed SP3.
+- [Install IE8](Internet-Explorer.md#install-ie8)
+
+  **Because, if you don't**, the Internet-Explorer-hosted Windows Update Agent will fail to work,
+  because it's trying to launch in IE6 -- which got [completely borked](Internet-Explorer.md#borked) by SP3.
 
   In my case, Firefox was already the default browser.
   Starting a Windows Update would only launch in a new Firefox window ...
   which doesn't support ActiveX, so the Agent doesn't work.
 
-- From then on, just keep installing batches of post-SP3 updates as they arrive.
+- Keep running Windows Update Agent and install every update&dagger; until there's nothing left.
 
-  You'll have to wait for Microsoft to deliver them on whatever schedule it decides.
-  Eventually, you'll just stop getting updates.
   And *you're done*.
 
-  I have always been wary about installing the 'Windows Genuine Advantage Notification' patch,
-  but as long as you have a valid XP license key, it shouldn't be an issue.
+  > Now, you don't *have to install* IE8, I guess.
+  > You'll be fine, if you are okay with waiting around and installing batches of post-SP3 updates as they arrive.
+  >
+  > You'll have to wait for Microsoft to deliver them on whatever schedule it decides.
+  > Eventually, you'll just stop getting updates.
+  > And then, *you're done*.
 
 **Hooray!**
-You have a functioning virtualized instance of your Windows XP box!
+You have a fully functioning virtualized instance of your Windows XP box!
 
-Well, *mostly functioning*.
-Your Internet Explorer is probably still IE6, and it's probably [borked](Internet-Explorer.md#borked) ... for good.
+> &dagger; I have always been wary about installing the 'Windows Genuine Advantage Notification' patch,
+> but as long as you have a valid XP license key, it shouldn't be an issue.

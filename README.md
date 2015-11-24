@@ -22,8 +22,6 @@ I provide two examples:
 - A [Simple Basic](Example-Simple.md) one.
 - [The Inspiron](Example-Inspiron.md) - a more complex example with an OEM partition and a Brain Transplant.
 
-And I have some rather sad news to tell you about [Internet Explorer](Internet-Explorer.md) ...
-
 ---
 
 Please feel free to [contribute to this repo](CONTRIBUTING.md).
@@ -52,6 +50,4 @@ Please feel free to [contribute to this repo](CONTRIBUTING.md).
 [Restoring with Ghost](Techniques.md#restoring-with-ghost)
 [Windows Updates](Techniques.md#windows-updates)
 [Snapshot Your VM](Techniques.md#snapshot-your-vm)
-
-[Internet-Explorer](Internet-Explorer.md#borked)
 -->

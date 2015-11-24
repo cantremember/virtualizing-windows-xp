@@ -1,14 +1,70 @@
 # Internet Explorer
 
+## Install IE8
+
+*Don't wait another moment!*
+
+Go and download an Offline Installer for IE8
+
+- [superlogical.net](http://pc.superlogical.net/windows/internet-explorer/2011/04/internet-explorer-8-offline-installer/)
+- [itechtics.com](http://www.itechtics.com/download-internet-explorer-all-versions/)
+- [webisee.com](http://www.webisee.com/2009/03/20/download-ie8-standalone-installer/)
+
+You can install it either before *or* after you [update to SP3](Techniques.md#windows-updates).
+
+If you feel like it, there's an IE7 installer.
+
+
+## Don't Install IE7
+
+When I was strugging to get beyond an
+["The version of iE you have installed does not match the update you are trying to install."](http://help.lockergnome.com/windows2/KB986688-update-install-wrong-version-ideas--ftopict433845.html)
+error from a (what turned out to be bogus) installer for IE8,
+I felt I might just have to *sigh* install IE7 before IE8.
+
+Oh, and just to make it more fun, I was using an [Online Installer](https://www.microsoft.com/en-us/download/details.aspx?id=32072) for IE7.
+
+First, I let it apply the Latest Updates and the Malicious Software tool as it suggested ... you know, *just because*.
+Then I ultimately found is that no matter what you do, you end up with
+
+> "Setup was unable to install the latest Windows Internet Explorer updates.
+>  After you restart your computer ... click Windows Update"
+
+Of course, IE7 doesn't properly install, and you end up [borked](Internet-Explorer.md#borked)
+without the ability to run the [Windows Update Agent](Techniques.md#windows-updates) that it so kindly recommends.
+
+So yeah, IE7 is a waste of your time.
+This may be a controversial stance to take, but I'm taking it.
+
+
+## Borked
+
+This document used to lead with:
+
 > *TL;DR: You'll probably be stuck with IE6, and it'll probably be permanently borked*
 
+because that's just what happens once you [upgrade to SP3](Techniques.md#windows-updates).
 
-### Borked
-
-By this, I mean that it won't load pages.
+And by "borked", I mean that it won't load pages.
 It just dispatches URL requests off to your default non-IE browser.
 
-I could find no effective way to *force* IE to be the default browser at this point.
+This is mostly annoying when you try to
+
+- use Windows Update Agent after you've installed SP3
+- use some third-party app which implemented an embedded browser instance for rendering a web page.
+  And yep, that'd be a failing instance of the IE6 engine.
+
+So, until that fine day when I found a proper [IE8 installer](Internet-Explorer.md#install-ie8),
+my re-built XP instances were weak tea in the Browser department.
+
+
+## TL;DR
+
+**The rest of this document** describes the terrible pain of trying to install IE6 without an [Offline Installer](Internet-Explorer.md#install-ie8).
+It's a link-rich treatise that took too damn long to research &amp; write -- and is too goddamn full of *'character'* -- for me to just shitcan it.
+
+So I present you this rant, in the spirit of what it's like to beat your head against a fucking wall of merciless technology.
+Because, you know, commercial computing is such a solid, perfect, reliable science ...
 
 
 ## The Quest for IE8
